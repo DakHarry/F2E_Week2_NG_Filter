@@ -1,20 +1,171 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<nav class="navbar navbar-dark bg-primary">
+  <div class="container d-flex flex-column flex-md-row">
 
+      <div class="container-md-left">
+          <a class="navbar-brand ml-md-5" href="index.html">HaveFun</a>
+      </div>
+      <div class="pl-md-5 flex-1">
+          <form class="search-wrapper">
+              <div>
+                  <i class="fas fa-search"></i>
+                  <input name="keyword" [(ngModel)]="keyword" #tKeyword="ngModel" class="form-control mr-sm-2 pl-4 bg-primary search-box" type="search" placeholder="Search" aria-label="Search">
+              </div>
+          </form>
+      </div>
+
+  </div>
+</nav>
+<div class="container d-flex flex-column flex-md-row">
+  <div class="container-md-left ">
+      <div class="h4 d-flex flex-column text-center d-md-none justify-content-center mt-2">
+          <div class="filter-wrapper">
+                <a class="text-decoration-none filter-btn" data-toggle="collapse" href="#spot-filter-wrapper" role="button" aria-expanded="false" aria-controls="spot-filter-wrapper">
+                        <span class="mr-2">篩選條件</span>
+                        <i class="fas fa-plus"></i>
+                </a>
+          </div>
+          <div class="d-block d-md-none"> 
+            <button *ngIf="zone != ''" type="button" class="btn btn-outline-primary btn-rounded" (click)="zone=''">
+                {{zone}}
+                <i class="far fa-times-circle"></i>
+            </button>
+            <button *ngIf="price != ''" type="button" class="btn btn-outline-primary btn-rounded" (click)="price=''">
+                {{price}}
+                <i class="far fa-times-circle"></i>
+            </button>
+            <button *ngIf="keyword != ''" type="button" class="btn btn-outline-primary btn-rounded" (click)="keyword=''">
+                {{keyword}}
+                <i class="far fa-times-circle"></i>
+            </button>
+            <p class="h5">總共
+                    <span class="text-primary">{{totalCount}}</span> 筆資料...</p>
+        </div>
+      </div>
+      <div class="collapse d-md-block" id="spot-filter-wrapper">
+          <div class="px-5 py-4 border-bottom filter">
+              <div class="h5">
+                  Location
+              </div>
+              <div>
+                  <select class="form-control" name="zone" [(ngModel)]="zone" #tZone="ngModel">
+                    <option value="">所有地區</option>
+                    <option *ngFor="let zone of selectList" value="{{zone}}">{{ zone }}</option>           
+                  </select>
+              </div>
+          </div>
+          <div class="px-5 py-4 border-bottom filter">
+              <div class="h5">Price</div>
+              <select class="form-control" name="price" [(ngModel)]="price" #tPrice="ngModel">
+                  <option value="">全部</option>
+                  <option>免費參觀</option>
+                  <option>DIY手做教學 200元/人提供用餐服務 150/人</option>
+                  <option>新台幣50元</option>
+              </select>
+          </div>
+          <div class="px-5 py-4 filter">
+              <p class="h5">Open Time</p>
+              <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="Categories1">
+                  <label class="form-check-label" for="Categories1">Everyday</label>
+              </div>
+              <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="Categories2">
+                  <label class="form-check-label" for="Categories2">Monday</label>
+              </div>
+              <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="Categories3">
+                  <label class="form-check-label" for="Categories3">Tuesday</label>
+              </div>
+              <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="Categories4">
+                  <label class="form-check-label" for="Categories4">Wednesday</label>
+              </div>
+              <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="Categories5">
+                  <label class="form-check-label" for="Categories5">Thursday</label>
+              </div>
+              <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="Categories6">
+                  <label class="form-check-label" for="Categories6">Friday</label>
+              </div>
+              <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="Categories7">
+                  <label class="form-check-label" for="Categories7">Saturday</label>
+              </div>
+              <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="Categories8">
+                  <label class="form-check-label" for="Categories8">Sunday</label>
+              </div>
+
+          </div>
+      </div>
+
+  </div>
+
+  <div class="container-fluid pl-md-5 py-md-4 flex-1 px-0">
+      <div class="d-none d-md-block">
+          <p class="h4">總共
+              <span class="text-primary">{{totalCount}}</span> 筆資料...</p>
+
+          <button *ngIf="zone != ''" type="button" class="btn btn-outline-primary btn-rounded" (click)="zone=''">
+              {{zone}}
+              <i class="far fa-times-circle"></i>
+          </button>
+          <button *ngIf="price != ''" type="button" class="btn btn-outline-primary btn-rounded" (click)="price=''">
+              {{price}}
+              <i class="far fa-times-circle"></i>
+          </button>
+          <button *ngIf="keyword != ''" type="button" class="btn btn-outline-primary btn-rounded" (click)="keyword=''">
+              {{keyword}}
+              <i class="far fa-times-circle"></i>
+          </button>
+      </div>
+
+      <a *ngFor="let info of data" class="card flex-xl-row my-4" id="card-link" href="page.html">
+          <div class="bg-cover bg-xl-cover bg-md-cover rounded-xl-left rounded-top" [style.background-image]="'url('+info.Picture1+')'"></div>
+          <div class="card-body flex-1">
+              <h4 class="text-primary">
+                  {{ info.Name }}
+              </h4>
+              <p>{{ info.Desciption }}</p>
+              <p class="font-weight-bold">{{info.Add}}</p>
+              <span class="card-xl-icon card-icon">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span class="text-black-50">{{info.Zone}}</span>
+              </span>
+              <span class="card-xl-icon card-icon">
+                  <i class="fas fa-dollar-sign"></i>
+                  <span class="text-black-50">{{info.Ticketinfo}}</span>
+              </span>
+              <span class="card-xl-icon card-icon">
+                  <i class="far fa-calendar-alt"></i>
+                  <span class="text-black-50">{{info.Opentime }}</span>
+              </span>
+
+          </div>
+      </a>
+
+
+
+      <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center justify-content-md-end">
+              <li class="page-item disabled">
+                  <a class="page-link" href="#" tabindex="-1">Previous</a>
+              </li>
+              <li class="page-item active">
+                  <a class="page-link" href="#">1</a>
+              </li>
+              <li class="page-item">
+                  <a class="page-link" href="#">2</a>
+              </li>
+              <li class="page-item">
+                  <a class="page-link" href="#">3</a>
+              </li>
+              <li class="page-item">
+                  <a class="page-link" href="#">Next</a>
+              </li>
+          </ul>
+      </nav>
+
+  </div>
+</div>

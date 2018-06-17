@@ -1,0 +1,22 @@
+<div clsas="container d-flex">
+    <div class="bread-wrapper">
+      <a (click)="onClick()">Explore</a> / {{spot.Name}}
+    </div>
+    <div class="content-wrapper">
+      <div id="content-bg" class="bg-cover bg-xl-cover bg-md-cover rounded-xl-left rounded-top" [style.background-image]="'url('+spot.Picture1+')'"></div>
+      <div class="container spot-info-wrapper">
+        <h1>{{spot.Name}}</h1>
+        <div>
+          <span class="author">{{spot.Ticketinfo}}</span>
+          <span class="tag">{{spot.Zone}}</span>
+        </div>
+        <div>
+          <span class="address"><i class="fas fa-map-marker"></i>{{spot.Add}}</span>
+          <span class="date"><i class="far fa-calendar-alt"></i>{{spot.Opentime}}</span>
+        </div>
+        <div class="context">
+            {{spot.Description}}
+        </div>
+      </div>
+    </div>
+</div>

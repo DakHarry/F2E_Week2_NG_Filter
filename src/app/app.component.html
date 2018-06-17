@@ -15,8 +15,13 @@
 
   </div>
 </nav>
-<div class="container d-flex flex-column flex-md-row">
-  <div class="container-md-left ">
+
+<div>
+        <router-outlet></router-outlet>
+    </div>
+
+<div id="spot-search-wrapper" class="container d-flex flex-column flex-md-row">
+  <div class="container-md-left">
       <div class="h4 d-flex flex-column text-center d-md-none justify-content-center mt-2">
           <div class="filter-wrapper">
                 <a class="text-decoration-none filter-btn" data-toggle="collapse" href="#spot-filter-wrapper" role="button" aria-expanded="false" aria-controls="spot-filter-wrapper">
@@ -121,7 +126,7 @@
           </button>
       </div>
 
-      <a *ngFor="let info of data" class="card flex-xl-row my-4" id="card-link" href="page.html">
+      <a *ngFor="let info of data" class="card flex-xl-row my-4" id="card-link" [routerLink]="['/spot', info._id]">
           <div class="bg-cover bg-xl-cover bg-md-cover rounded-xl-left rounded-top" [style.background-image]="'url('+info.Picture1+')'"></div>
           <div class="card-body flex-1">
               <h4 class="text-primary">
